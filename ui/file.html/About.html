@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile UI/UX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0b0f2f, #1b233d);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .text-content {
+            max-width: 50%;
+        }
+
+        .text-content h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .text-content h2 {
+            font-size: 2rem;
+            color: #aaa;
+        }
+
+        .text-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 20px 0;
+            color: #ccc;
+        }
+
+        .color-boxes {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            background-color: #ff5f57;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.2);
+        }
+
+        .download-button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            background: linear-gradient(90deg, #ff5f57, #ff7e79);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .download-button:hover {
+            background: linear-gradient(90deg, #ff7e79, #ff5f57);
+        }
+
+        .visual-content {
+            max-width: 45%;
+            position: relative;
+        }
+
+        .visual-content img {
+            width: 100%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: spin 10s infinite linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-content">
+            <h1>About App</h1>
+            <h2>Mobile UI/UX</h2>
+            <p>Website Wireframe for Mobile App. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+                condimentum elementum ligula, eu tempor arcu dictum in.</p>
+
+            <div class="color-boxes">
+                <div class="color-box" style="background-color: #ff5f57;"></div>
+                <div class="color-box" style="background-color: #ff7e79;"></div>
+                <div class="color-box" style="background-color: #ffaa99;"></div>
+            </div>
+
+            <button class="download-button">Download Now</button>
+        </div>
+
+        <div class="visual-content">
+            <img src="https://via.placeholder.com/600x400" alt="App Visual">
+            <div class="overlay"></div>
+        </div>
+    </div>
+</body>
+
+</html>

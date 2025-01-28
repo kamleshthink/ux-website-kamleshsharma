@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ Section</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+  /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    
+    .faq-section {
+      width: 80%;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    
+    .faq {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    
+    /* FAQ Item Styles */
+    .faq-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .faq-question h3 {
+      font-size: 16px;
+      color: #5a5a5a;
+    }
+    
+    .faq-toggle {
+      font-size: 20px;
+      color: #7a00d3;
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-answer {
+      display: none;
+      margin-top: 10px;
+      color: #7a7a7a;
+      font-size: 14px;
+    }
+    
+    .faq-answer p {
+      margin: 0;
+    }
+    
+    /* Footer Section */
+    .faq-footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .faq-footer h2 {
+      font-size: 20px;
+      color: #5a5a5a;
+      margin-bottom: 10px;
+    }
+    
+    .faq-footer button {
+      padding: 10px 20px;
+      background-color: #7a00d3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .faq-footer button:hover {
+      background-color: #5500a3;
+    }
+    </style>
+</head>
+<body>
+  <section class="faq-section">
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Title for Frequently Asked Question</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt felis enim, sed commodo ante mollis ac. Quisque ornare enim nec urna bibendum varius.</p>
+        </div>
+      </div>
+      <!-- Repeatable FAQ Items -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <h3>Title for Frequently Asked Question</h3>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt felis enim, sed commodo ante mollis ac. Quisque ornare enim nec urna bibendum varius.</p>
+        </div>
+      </div>
+      <!-- Add as many FAQ items as needed -->
+    </div>
+
+    <div class="faq-footer">
+      <h2>Still Have any Question?</h2>
+      <button href="contact.html" >Contact us Now</button>
+    </div>
+  </section>
+  <script src="script.js"></script>
+  <script>
+  // JavaScript for FAQ Toggle
+    document.querySelectorAll('.faq-item').forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const toggle = item.querySelector('.faq-toggle');
+    
+      question.addEventListener('click', () => {
+        const isOpen = answer.style.display === 'block';
+    
+        // Close all open FAQs
+        document.querySelectorAll('.faq-answer').forEach((ans) => (ans.style.display = 'none'));
+        document.querySelectorAll('.faq-toggle').forEach((togg) => (togg.textContent = '+'));
+    
+        // Toggle the current FAQ
+        if (!isOpen) {
+          answer.style.display = 'block';
+          toggle.textContent = '−';
+        } else {
+          answer.style.display = 'none';
+          toggle.textContent = '+';
+        }
+      });
+    });
+    </script>
+</body>
+</html>

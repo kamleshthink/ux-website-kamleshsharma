@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="../file.css\contact.css">
+  </head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">ROARING JAGUAR</div>
+      <nav class="nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Pricing</a>
+        <button class="login-btn">Login</button>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h1>We have the best international education</h1>
+        <p>The best future in our hands</p>
+        <p class="hero-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <button class="read-more-btn">Read More</button>
+      </div>
+      <div class="academic-offer">
+        <h2>Academic Offer</h2>
+        <ul>
+          <li><span class="icon">👩‍🏫</span>Highly qualified teachers</li>
+          <li><span class="icon">💻</span>Online and face-to-face classes</li>
+          <li><span class="icon">🌐</span>International recognition</li>
+        </ul>
+      </div>
+      <div class="contact">
+        <h3>Contact Us</h3>
+        <p>📞 +123 456 789</p>
+      </div>
+      <div class="hero-image">
+        <img src="../Assets\images\profile-pic .jpg" alt="Students studying">
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <p>Follow us:</p>
+    <div class="social-icons">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  // Example: Dynamic Hero Heading Animation
+  const heroHeading = document.querySelector('.hero-text h1');
+  heroHeading.style.transition = 'transform 0.3s ease-in-out';
+  heroHeading.addEventListener('mouseover', () => {
+    heroHeading.style.transform = 'scale(1.04)';
+  });
+  heroHeading.addEventListener('mouseout', () => {
+    heroHeading.style.transform = 'scale(1)';
+  });
+
+  // Example: Parallax Scrolling for the Hero Section
+  window.addEventListener('scroll', () => {
+    const hero = document.querySelector('.hero');
+    hero.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
+  });
+
+  // Example: Rotating 3D Cube using Three.js
+  function create3DCube() {
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.top = '350px';
+    container.style.right = '30px';
+    container.style.width = '95px';
+    container.style.height = '10px';
+    document.body.appendChild(container);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(200, 200);
+    container.appendChild(renderer.domElement);
+
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 5;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+  }
+  create3DCube();
+
+  // Example: Smooth Scroll to Sections
+  document.querySelectorAll('.nav a').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Example: Adding a Hover Effect on Buttons
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach((button) => {
+    button.addEventListener('mouseover', () => {
+      button.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
+    });
+    button.addEventListener('mouseout', () => {
+      button.style.boxShadow = 'none';
+    });
+  });
+
+  // Example: Dynamic Counter Animation
+  const contactNumber = document.querySelector('.contact p');
+  let counter = 0;
+  const target =  8969445367;
+  const increment = Math.ceil(target / 100);
+
+  function animateCounter() {
+    if (counter < target) {
+      counter += increment;
+      contactNumber.textContent = `📞 +91 ${counter}`;
+      setTimeout(animateCounter, 30);
+    } else {
+      contactNumber.textContent = `📞 +91 ${target}`;
+    }
+  }
+  animateCounter();
+</script>
+
+
+</body>
+</html>

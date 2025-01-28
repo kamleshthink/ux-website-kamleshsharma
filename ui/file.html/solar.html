@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System and Pi Visualization</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid #666;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab.active {
+            background-color: #ffcc00;
+            color: black;
+        }
+
+        .content-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .content-container.active {
+            display: flex;
+        }
+
+        canvas {
+            background-color: black;
+            border: 2px solid white;
+        }
+
+        .math-info {
+            max-width: 300px;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        .math-info h2 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #ffcc00;
+        }
+
+        .solar-system {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sun {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            border-radius: 50%;
+            box-shadow: 0 0 50px yellow;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .planet {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            border-radius: 50%;
+        }
+
+        .orbit:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            animation-duration: 10s;
+        }
+
+        .orbit:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            animation-duration: 15s;
+        }
+
+        .orbit:nth-child(4) {
+            width: 400px;
+            height: 400px;
+            animation-duration: 20s;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Solar System and Pi Visualization</h1>
+    <div class="tab-container">
+        <div class="tab active" data-target="pi-visualization">Pi Visualization</div>
+        <div class="tab" data-target="solar-system">Solar System</div>
+    </div>
+
+    <!-- Pi Visualization Section -->
+    <div class="content-container active" id="pi-visualization">
+        <canvas id="visualizationCanvas"></canvas>
+        <div class="math-info">
+            <h2>Mathematical Explanation</h2>
+            <p><strong>Points:</strong> <span id="pointsCount">200</span></p>
+            <p><strong>Multiplier:</strong> <span id="multiplierValue">2.00</span></p>
+            <p>
+                Each point on the circle represents an integer. When multiplied by the multiplier, 
+                it creates a connection to another point, modulo the total number of points.
+            </p>
+            <p>
+                Formula: <code>newIndex = (currentIndex * multiplier) % totalPoints</code>
+            </p>
+            <p>
+                The visualization is created by drawing lines between these connected points, forming 
+                mesmerizing patterns based on the multiplier.
+            </p>
+        </div>
+    </div>
+
+    <!-- Solar System Section -->
+    <div class="content-container" id="solar-system">
+        <div class="solar-system">
+            <div class="sun"></div>
+            <div class="orbit">
+                <div class="planet" style="top: 0; left: 90px;"></div>
+            </div>
+            <div class="orbit">
+                <div class="planet" style="top: 0; left: 140px;"></div>
+            </div>
+            <div class="orbit">
+                <div class="planet" style="top: 0; left: 190px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll(".tab");
+        const contents = document.querySelectorAll(".content-container");
+
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                tabs.forEach((t) => t.classList.remove("active"));
+                contents.forEach((c) => c.classList.remove("active"));
+
+                tab.classList.add("active");
+                document.getElementById(tab.dataset.target).classList.add("active");
+            });
+        });
+
+        // Pi Visualization Logic
+        const canvas = document.getElementById("visualizationCanvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = 600;
+        canvas.height = 600;
+
+        const radius = 250;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+
+        let multiplier = 2; // Initial multiplier
+        let pointsCount = 200; // Number of points on the circle
+        const multiplierValue = document.getElementById("multiplierValue");
+        const pointsCountDisplay = document.getElementById("pointsCount");
+
+        function drawVisualization() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            const points = [];
+            for (let i = 0; i < pointsCount; i++) {
+                const angle = (2 * Math.PI * i) / pointsCount;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
+                points.push({ x, y });
+
+                ctx.beginPath();
+                ctx.arc(x, y, 2, 0, 2 * Math.PI);
+                ctx.fillStyle = "#ffcc00";
+                ctx.fill();
+            }
+
+            for (let i = 0; i < pointsCount; i++) {
+                const start = points[i];
+                const end = points[Math.floor((i * multiplier) % pointsCount)];
+
+                ctx.beginPath();
+                ctx.moveTo(start.x, start.y);
+                ctx.lineTo(end.x, end.y);
+                ctx.strokeStyle = `hsl(${(i * 360) / pointsCount}, 100%, 50%)`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        function animatePiVisualization() {
+            drawVisualization();
+            multiplier += 0.01;
+            multiplierValue.textContent = multiplier.toFixed(2);
+            pointsCountDisplay.textContent = pointsCount;
+            requestAnimationFrame(animatePiVisualization);
+        }
+
+        animatePiVisualization();
+    </script>
+</body>
+</html>

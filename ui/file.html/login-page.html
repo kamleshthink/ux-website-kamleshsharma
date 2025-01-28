@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Menu</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f8f8; }
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-toggle { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #ccc; border-radius: 8px; padding: 10px 15px; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    .profile-pic { width: 30px; height: 30px; border-radius: 50%; }
+    .dropdown-menu { position: absolute; top: 50px; left: 0; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 200px; display: none; flex-direction: column; z-index: 1000; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-search { padding: 10px; border: none; border-bottom: 1px solid #ddd; font-size: 14px; outline: none; }
+    .dropdown-item { padding: 10px 15px; cursor: pointer; font-size: 14px; color: #333; border-bottom: 1px solid #eee; }
+    .dropdown-item:last-child { border-bottom: none; }
+    .dropdown-item:hover { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <div class="dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()"> 
+      <img src="../Assets\images\profile.png" alt="Profile Picture" class="profile-pic"> Olivia Rhye
+    </button>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <input type="text" placeholder="Search" class="dropdown-search">
+      <div class="dropdown-item">View profile</div>
+      <div class="dropdown-item">Settings</div>
+      <div class="dropdown-item">Keyboard shortcuts</div>
+      <div class="dropdown-item">Company profile</div>
+      <div class="dropdown-item">Team</div>
+      <div class="dropdown-item">Invite colleagues</div>
+      <div class="dropdown-item">Changelog</div>
+      <div class="dropdown-item">Slack Community</div>
+      <div class="dropdown-item">Support</div>
+      <div class="dropdown-item">API</div>
+      <div class="dropdown-item">Log out</div>
+    </div>
+  </div>
+  <script>
+    function toggleDropdown() {
+      const dropdownMenu = document.getElementById("dropdownMenu");
+      dropdownMenu.classList.toggle("active");
+    }
+    window.onclick = function(event) {
+      if (!event.target.closest(".dropdown")) {
+        document.getElementById("dropdownMenu").classList.remove("active");
+      }
+    };
+  </script>
+</body>
+</html>

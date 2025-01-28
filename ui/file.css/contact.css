@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333;
+  }
+  
+  .header {
+    background-color: #f4a261;
+    padding: 10px 0;
+    color: white;
+  }
+  
+  .header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .nav a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav .login-btn {
+    background-color: #264653;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .hero {
+    background-color: #f4f4f9;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .hero .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f9;
+  }
+  
+  .hero-text {
+    max-width: 50%;
+  }
+  
+  .hero-text h1 {
+    color: #264653;
+    font-size: 36px;
+  }
+  
+  .hero-desc {
+    color: #3f9df0;
+  }
+  
+  .read-more-btn {
+    background-color: #e76f51;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .academic-offer {
+    margin-top: 20px;
+  }
+  
+  .academic-offer h2 {
+    color: #2a9d8f;
+  }
+  
+  .academic-offer ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .academic-offer li {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .contact {
+    background-color: #264653;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  .hero-image img {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+  
+  .footer {
+    background-color: #264653;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footer .social-icons a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Landing Page</title>
+    <link rel="stylesheet" href="../file.css/index.css" />
+    
+       
+    
+</head>
+<body>
+    <header>
+        
+        <div class="logo">ROARING JAGUAR</div>
+        <nav>
+            <ul>
+                <li><a href="../file.html\solar.html">Home</a></li>
+                <li><a href="../file.html\Services.html">Services</a></li>
+                <li><a href="../file.html\About.html">About</a></li>
+                <li><a href="../file.html\contact.html">Contact</a></li>
+                <li><a href="../file.html\faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <a href="../file.html\Signup.html" class="sign-up">SIGN UP</a>
+          <!-- Dark Mode Toggle Switch -->
+          <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="themeSwitcher">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="content">
+            <h1>UI / UX LANDING PAGE</h1>
+            <h2>KAMLESH KUMAR SHARMA</h2>
+            <p>UI (User Interface) focuses on the visual beauty of design,
+                 ensuring it is aesthetically pleasing and aligns with the brand's identity. 
+                 UX (User Experience) emphasizes creating seamless, intuitive interactions, 
+                 making the design both functional and delightful. </p>
+            <a href="../Assets\documents\ui ux book  kamlesh sharma.pdf" class="cta">READ MORE</a>
+        </div>
+        <div class="image-section">
+            <img src="../Assets\images\profile.png" alt="UI/UX Mockups">
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 Company Name. All rights reserved.
+    </footer>
+    <script>// Dark Mode Toggle
+        const themeSwitcher = document.getElementById("themeSwitcher");
+        
+        // Load the saved theme from localStorage
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            document.body.classList.add(savedTheme);
+            themeSwitcher.checked = savedTheme === "dark-mode";
+        }
+        
+        // Toggle between dark and light mode
+        themeSwitcher.addEventListener("change", () => {
+            if (themeSwitcher.checked) {
+                document.body.classList.add("dark-mode");
+                localStorage.setItem("theme", "dark-mode");
+            } else {
+                document.body.classList.remove("dark-mode");
+                localStorage.setItem("theme", "");
+            }
+        });
+        </script>
+</body>
+</html>
